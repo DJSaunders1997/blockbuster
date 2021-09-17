@@ -104,6 +104,8 @@ def create_2_plots():
 	ax[0].axis('off') # Remove unnecessary axis
 	ax[1].axis('off') # Remove unnecessary axis
 
+	plt.close(fig)	# Close fig to produce more than 20 and save memory
+
 	return fig
 
 def create_pdf(num_pages):
