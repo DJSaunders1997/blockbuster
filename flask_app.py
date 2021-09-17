@@ -2,13 +2,9 @@
 # A very simple Flask Hello World app for you to get started with...
 
 from flask import Flask
-from flask import send_file, render_template, request
-
-# How to display matplotlib with flask https://www.tutorialspoint.com/how-to-show-matplotlib-in-flask
-import io
-from flask import Response
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-
+from flask import send_file, render_template, request, Response
+import os
+import glob
 
 # functions needed for hexagonal plot
 import matplotlib.pyplot as plt
@@ -136,8 +132,15 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-	#https://flask.palletsprojects.com/en/2.0.x/quickstart/#accessing-request-data
+	# Delete all existing PDF files to save storage
+	filelist = glob.glob('*.pdf')
+	for filePath in filelist:
+		try:
+			os.remove(filePath)
+		except OSError:
+			print("Error while deleting file")
 
+	#https://flask.palletsprojects.com/en/2.0.x/quickstart/#accessing-request-data
 	if request.method == 'POST':
 
 		text = request.form.get('textbox')
