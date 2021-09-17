@@ -161,20 +161,5 @@ def file_downloads():
 	except Exception as e:
 		return str(e)
 
-@app.route('/pdf/<num_pages>/')
-def return_pdf(num_pages = 1):
-	#TODO: delete all exising PDF's when a new one is created
-
-	#text = request.form.get('text')
-	#textbox_num = int(text)
-
-	#num_pages = textbox_num	
-
-	try:
-		create_pdf(int(num_pages))
-		return send_file(f'blockbuster-{num_pages}-pages.pdf', attachment_filename=f'blockbuster-{num_pages}-pages.pdf')
-	except Exception as e:
-		return str(e)
-
 
 
