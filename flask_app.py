@@ -2,7 +2,7 @@
 # A very simple Flask Hello World app for you to get started with...
 
 from flask import Flask
-from flask import send_file
+from flask import send_file, render_template, request
 
 # How to display matplotlib with flask https://www.tutorialspoint.com/how-to-show-matplotlib-in-flask
 import io
@@ -15,6 +15,8 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import RegularPolygon
 import numpy as np
 import random
+from matplotlib.backends.backend_pdf import PdfPages
+
 
 # Define hex coords
 coord = [
@@ -112,7 +114,7 @@ def create_pdf(num_pages):
 	# Each page has 2 plots on it
 	# Therefore if 6 people are playing 1 round 3 pages should be printed.
 
-	pp = PdfPages(f'blockbuster-{num_pages}-pages.pdf')
+	pp = PdfPages(f'/home/dsaund/blockbusters/blockbuster-{num_pages}-pages.pdf')
 
 	for i in range(num_pages):
 
@@ -127,10 +129,25 @@ def create_pdf(num_pages):
 app = Flask(__name__)
 
 # How to send files https://pythonprogramming.net/flask-send-file-tutorial/
+# How to read from textbox https://stackoverflow.com/questions/46990497/flask-use-a-button-to-submit-text-in-a-text-box-a-form
 
-@app.route('/')
-def who():
-	return 'Made By Dave'
+@app.route('/', methods=['POST'])
+def index():
+	#https://flask.palletsprojects.com/en/2.0.x/quickstart/#accessing-request-data
+
+	if request.method == 'POST':
+
+		text = request.form.get('text')
+        	textbox_num = int(text)
+		
+		create_pdf(int(num_pages))
+                return send_file(f'blockbuster-{num_pages}-pages.pdf', attachment_filename=f'blockbuster-{num_pages}-pages.pdf')
+
+	else:
+
+		return render_template('index.html')
+
+
 
 @app.route('/file-downloads/')
 def file_downloads():
@@ -139,10 +156,20 @@ def file_downloads():
 	except Exception as e:
 		return str(e)
 
-@app.route('/pdf/<num_pages>')
-def return_pdf(num_pages='1'):
+@app.route('/pdf/<num_pages>/')
+def return_pdf(num_pages = 1):
+	#TODO: delete all exising PDF's when a new one is created
+
+	#text = request.form.get('text')
+	#textbox_num = int(text)
+
+	#num_pages = textbox_num	
+
 	try:
-		create_pdf(str(num_pages))
+		create_pdf(int(num_pages))
 		return send_file(f'blockbuster-{num_pages}-pages.pdf', attachment_filename=f'blockbuster-{num_pages}-pages.pdf')
 	except Exception as e:
 		return str(e)
+
+
+
