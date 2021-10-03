@@ -97,6 +97,9 @@ def create_2_plots():
 	ax[0].axis('off') # Remove unnecessary axis
 	ax[1].axis('off') # Remove unnecessary axis
 
+	# remove figure margins https://stackoverflow.com/questions/18619880/matplotlib-adjust-figure-margin
+	plt.subplots_adjust(left=0, bottom=0, right=1, top=1, wspace=0, hspace=0)
+
 	plt.close(fig)	# Close fig to produce more than 20 and save memory
 
 	return fig
@@ -112,11 +115,10 @@ def create_pdf(num_pages):
 	for i in range(num_pages):
 
 		plot = create_2_plots()
-		#plot.set_size_inches([7,10])
 
-		plot.set_size_inches([8,11])
+		plot.set_size_inches([8.5,11])
 
-		pp.savefig(plot)
+		pp.savefig(plot) # bbox_inches='tight' can help full page with figure
 
 	pp.close()
 
