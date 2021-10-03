@@ -65,8 +65,8 @@ def create_2_plots():
 	vcoord = [2. * np.sin(np.radians(60)) * (c[1] - c[2]) /3. for c in coord]
 
 	fig, ax = plt.subplots(2,1)
-	ax[0].set_aspect('equal')
-	ax[1].set_aspect('equal')
+	#ax[0].set_aspect('equal')
+	#ax[1].set_aspect('equal')
 
 	# Add some coloured hexagons
 	for x, y, l in zip(hcoord, vcoord, labels):
@@ -112,7 +112,9 @@ def create_pdf(num_pages):
 	for i in range(num_pages):
 
 		plot = create_2_plots()
-		plot.set_size_inches([7,10])
+		#plot.set_size_inches([7,10])
+
+		plot.set_size_inches([8,11])
 
 		pp.savefig(plot)
 
@@ -121,5 +123,5 @@ def create_pdf(num_pages):
 	print('PDF CREATED')
 
 # Test functions
-# create_pdf(4)
+create_pdf(4)
 
