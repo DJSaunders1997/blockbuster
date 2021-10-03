@@ -76,7 +76,7 @@ def create_2_plots():
 		ax[0].add_patch(hex)
 
 		# Also add a text label
-		ax[0].text(x, y+0.2, l, ha='center', va='center', size=8)
+		ax[0].text(x, y+0.35, l, ha='center', va='center', size=12)
 
 	# Also add scatter points in hexagon centres
 	ax[0].scatter(hcoord, vcoord, alpha=0) # Adds invisible centroids, not sure why its needed but it is
@@ -89,7 +89,7 @@ def create_2_plots():
 		ax[1].add_patch(hex)
 
 		# Also add a text label
-		ax[1].text(x, y+0.2, l, ha='center', va='center', size=8)
+		ax[1].text(x, y+0.35, l, ha='center', va='center', size=12)
 
 	# Also add scatter points in hexagon centres
 	ax[1].scatter(hcoord, vcoord, alpha=0) # Adds invisible centroids, not sure why its needed but it is
