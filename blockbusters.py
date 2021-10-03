@@ -72,7 +72,7 @@ def create_2_plots():
 	for x, y, l in zip(hcoord, vcoord, labels):
 		hex = RegularPolygon((x, y), numVertices=6, radius=2. / 3.,
 							orientation=np.radians(30),
-							facecolor='w', alpha=0.2, edgecolor='k')
+							facecolor='w', alpha=1, edgecolor='k')
 		ax[0].add_patch(hex)
 
 		# Also add a text label
@@ -85,7 +85,7 @@ def create_2_plots():
 	for x, y, l in zip(hcoord, vcoord, labels2):
 		hex = RegularPolygon((x, y), numVertices=6, radius=2. / 3.,
 							orientation=np.radians(30),
-							facecolor='w', alpha=0.2, edgecolor='k')
+							facecolor='w', alpha=1, edgecolor='k')
 		ax[1].add_patch(hex)
 
 		# Also add a text label
