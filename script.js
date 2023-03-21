@@ -23,25 +23,27 @@ function drawHexagon(ctx, centerX, centerY, radius, lineWidth) {
     // Set the line width for the hexagon
     ctx.lineWidth = lineWidth;
 
-    // Loop through the 6 vertices of the hexagon
+    // Loop through the 6 corners of the hexagon
     for (let i = 0; i <= 6; i++) {
-        // Calculate the angle for each vertex (in radians)
+        // Find the angle for each corner (in radians) π/3 = 60°
         const angle = (Math.PI / 3) * i;
 
-        // Calculate the x and y coordinates of each vertex
+        // Find the x (horizontal) and y (vertical) position of each corner
+        // We use a circle to help find the positions
+        // Imagine a circle around the hexagon, and the corners are on the circle
         const x = centerX + radius * Math.cos(angle);
         const y = centerY + radius * Math.sin(angle);
 
-        // If it's the first vertex, move the path to the starting point
+        // If it's the first corner, start drawing from there
         if (i === 0) {
             ctx.moveTo(x, y);
         } else {
-            // For the other vertices, draw a line to the next vertex
+            // For the other corners, draw a line to the next corner
             ctx.lineTo(x, y);
         }
     }
 
-    // Close the path, connecting the last vertex to the first
+    // Connect the last corner to the first corner to finish the hexagon
     ctx.closePath();
 
     // Stroke the path, creating the outline of the hexagon
