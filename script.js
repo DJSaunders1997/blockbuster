@@ -71,22 +71,24 @@ function drawHexagonGrid(ctx, startX, startY, radius, lineWidth, rows, cols) {
     }
 }
 
-// This function is called when the "Draw Hexagon Grid" button is clicked
-function onDrawHexagonGridButtonClick() {
+// This function is called when the input fields for rows or columns are changed
+function onInputChange() {
     // Initialize the canvas and get its context
     const { canvas, ctx } = initializeCanvas();
-
-    // Clear the canvas before drawing a new hexagon grid
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Set the starting position, radius, line width, and grid size for the hexagon grid
+    // Get values from html element
+    const rows = document.getElementById("rows").value;
+    const cols = document.getElementById("columns").value;
+
     const startX = 50;
     const startY = 50;
     const radius = 30;
     const lineWidth = 2;
-    const rows = 8;
-    const cols = 6;
 
     // Draw the hexagon grid on the canvas
     drawHexagonGrid(ctx, startX, startY, radius, lineWidth, rows, cols);
 }
+
+// Call onInputChange on page load to draw the initial hexagon grid
+onInputChange();
