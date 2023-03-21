@@ -1,3 +1,4 @@
+// Initialize the canvas and its 2D drawing context
 // This function initializes the canvas and its 2D drawing context
 function initializeCanvas() {
     // Get the canvas element by its id ("hexagonCanvas")
@@ -47,22 +48,45 @@ function drawHexagon(ctx, centerX, centerY, radius, lineWidth) {
     ctx.stroke();
 }
 
-// This function is called when the "Draw Hexagon" button is clicked
-function onDrawHexagonButtonClick() {
+// Draw a grid of hexagons on the canvas
+function drawHexagonGrid(ctx, startX, startY, radius, lineWidth, rows, cols) {
+    // Calculate the height and width of a hexagon
+    const hexHeight = Math.sqrt(3) * radius;
+    const hexWidth = 2 * radius;
+
+    // Loop through the rows and columns of the grid
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+            // Calculate the offset position for each hexagon
+            const offsetX = (col * 3 * radius) / 2;
+            const offsetY = (row * hexHeight) + (hexHeight / 2 * (col % 2));
+
+            // Calculate the center position for the current hexagon
+            const centerX = startX + offsetX;
+            const centerY = startY + offsetY;
+
+            // Draw the hexagon at the calculated position
+            drawHexagon(ctx, centerX, centerY, radius, lineWidth);
+        }
+    }
+}
+
+// This function is called when the "Draw Hexagon Grid" button is clicked
+function onDrawHexagonGridButtonClick() {
     // Initialize the canvas and get its context
     const { canvas, ctx } = initializeCanvas();
 
-    // Clear the canvas before drawing a new hexagon
+    // Clear the canvas before drawing a new hexagon grid
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Calculate the center of the canvas
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
+    // Set the starting position, radius, line width, and grid size for the hexagon grid
+    const startX = 50;
+    const startY = 50;
+    const radius = 30;
+    const lineWidth = 2;
+    const rows = 8;
+    const cols = 6;
 
-    // Set the hexagon's radius and line width
-    const radius = 50;
-    const lineWidth = 5;
-
-    // Draw the hexagon on the canvas
-    drawHexagon(ctx, centerX, centerY, radius, lineWidth);
+    // Draw the hexagon grid on the canvas
+    drawHexagonGrid(ctx, startX, startY, radius, lineWidth, rows, cols);
 }
