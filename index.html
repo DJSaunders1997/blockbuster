@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2210/2210034.png">
+<html>
+
+<head>
+    <TITLE> Merlin - Blockbusters </TITLE>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="drawHexagon()">Draw Hexagon</button>
+    <canvas id="hexagonCanvas" width="300" height="300"></canvas>
+    <script>
+        function drawHexagon() {
+            const canvas = document.getElementById("hexagonCanvas");
+            const ctx = canvas.getContext("2d");
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = 50;
+            const lineWidth = 5;
+
+            ctx.beginPath();
+            ctx.lineWidth = lineWidth;
+
+            for (let i = 0; i <= 6; i++) {
+                const angle = (Math.PI / 3) * i;
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle);
+
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+
+            ctx.closePath();
+            ctx.stroke();
+        }
+    </script>
+
+    <div>
+        <hr>
+        Website by David Saunders.
+        <br>
+        Contact: <a href="DJSaunders1997@gmail.com">DJSaunders1997@gmail.com</a>
+        <br>
+        <a href="https://github.com/DJSaunders1997/blockbuster">Github</a>
+        <br>
+    </div>
+
+</body>
+
+</html>
