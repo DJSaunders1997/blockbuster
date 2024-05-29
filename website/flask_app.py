@@ -8,7 +8,7 @@ from flask import send_file, render_template, request, Response
 import os
 import glob
 
-from blockbusters import create_pdf
+from website.blockbusters import create_pdf
 
 app = Flask(__name__)
 
