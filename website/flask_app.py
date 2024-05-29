@@ -4,7 +4,7 @@
 # html is in normal place for flask projects
 
 from flask import Flask
-from flask import send_file, render_template, request, Response
+from flask import send_file, render_template, request
 import os
 import glob
 
