@@ -8,7 +8,7 @@ from flask import send_file, render_template, request, Response
 import os
 import glob
 
-from website.blockbusters import create_pdf
+from blockbusters import create_pdf
 
 app = Flask(__name__)
 
@@ -37,7 +37,7 @@ def index():
 		print(num_pages)
 
 		create_pdf(int(num_pages))
-		return send_file(f'blockbuster-{num_pages}-pages.pdf', attachment_filename=f'blockbuster-{num_pages}-pages.pdf')
+		return send_file(f'blockbuster-{num_pages}-pages.pdf')
 
 	else:
 		return render_template('index.html')
@@ -49,5 +49,5 @@ def file_downloads():
 	except Exception as e:
 		return str(e)
 
-
-
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000)
