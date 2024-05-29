@@ -1,7 +1,10 @@
 # Blockbusters
 This project generates printable game sheets for the game of Blockbusters. The game sheets are created using a Python script that generates a PDF file with hexagonal grids and randomized letters in each grid. The PDF file can be printed and used for playing the game.
 
-http://dsaund.pythonanywhere.com/
+https://blockbusters.azurewebsites.net/
+
+# Deployments
+TODO: Expand on
 
 ## Prerequisites
 The following packages are required to run the project:
@@ -23,6 +26,7 @@ python app.py
 4. Enter the number of pages you want to generate in the text box and click the "Generate Blockbusters" button.
 5. The PDF file with the generated game sheets will be downloaded automatically.
 ## Project structure
+Azure Web Apps requites the flask app to be named app.py, and there to be a requirements.txt both in the home directory.
 The project consists of the following files:
 - `app.py`: This file contains the Flask app that serves the HTML pages and generates the PDF file.
 - `blockbusters.py`: This file contains the Python script that generates the hexagonal grids and randomized letters.
