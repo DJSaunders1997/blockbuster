@@ -1,11 +1,13 @@
 
 # Imports
 #https://stackoverflow.com/questions/46525981/how-to-plot-x-y-z-coordinates-in-the-shape-of-a-hexagonal-grid
+import matplotlib
+from matplotlib.backends.backend_pdf import PdfPages
 import matplotlib.pyplot as plt
 from matplotlib.patches import RegularPolygon
+matplotlib.use('Agg')  # Use the Agg backend for non-interactive environments
 import numpy as np
 import random
-from matplotlib.backends.backend_pdf import PdfPages
 
 # Specify coordinates
 coord = [
@@ -69,27 +71,27 @@ def create_2_plots():
 	#ax[1].set_aspect('equal')
 
 	# Add some coloured hexagons
-	for x, y, l in zip(hcoord, vcoord, labels):
+	for x, y, label in zip(hcoord, vcoord, labels):
 		hex = RegularPolygon((x, y), numVertices=6, radius=2. / 3.,
 							orientation=np.radians(30),
 							facecolor='w', alpha=1, edgecolor='k')
 		ax[0].add_patch(hex)
 
 		# Also add a text label
-		ax[0].text(x, y+0.35, l, ha='center', va='center', size=12)
+		ax[0].text(x, y+0.35, label, ha='center', va='center', size=12)
 
 	# Also add scatter points in hexagon centres
 	ax[0].scatter(hcoord, vcoord, alpha=0) # Adds invisible centroids, not sure why its needed but it is
 
 	# Add some coloured hexagons
-	for x, y, l in zip(hcoord, vcoord, labels2):
+	for x, y, label in zip(hcoord, vcoord, labels2):
 		hex = RegularPolygon((x, y), numVertices=6, radius=2. / 3.,
 							orientation=np.radians(30),
 							facecolor='w', alpha=1, edgecolor='k')
 		ax[1].add_patch(hex)
 
 		# Also add a text label
-		ax[1].text(x, y+0.35, l, ha='center', va='center', size=12)
+		ax[1].text(x, y+0.35, label, ha='center', va='center', size=12)
 
 	# Also add scatter points in hexagon centres
 	ax[1].scatter(hcoord, vcoord, alpha=0) # Adds invisible centroids, not sure why its needed but it is
