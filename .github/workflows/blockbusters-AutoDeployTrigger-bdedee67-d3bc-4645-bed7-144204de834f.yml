@@ -5,7 +5,7 @@ on:
   # Automatically trigger it when detected changes in repo
   push:
     branches: 
-      [ "main", "containerise" ]
+      [ "master", "containerise" ]
     paths:
     - '.src/**'
     - '.github/workflows/blockbusters-AutoDeployTrigger-bdedee67-d3bc-4645-bed7-144204de834f.yml'
