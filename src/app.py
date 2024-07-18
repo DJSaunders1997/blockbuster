@@ -3,8 +3,7 @@
 # Logic of creating the blockbusters is in blockbusters.py
 # html is in normal place for flask projects
 
-from flask import Flask
-from flask import send_file, render_template, request, Response
+from flask import Flask, send_file, render_template, request
 import os
 import glob
 
@@ -37,7 +36,7 @@ def index():
 		print(num_pages)
 
 		create_pdf(int(num_pages))
-		return send_file(f'blockbuster-{num_pages}-pages.pdf', attachment_filename=f'blockbuster-{num_pages}-pages.pdf')
+		return send_file(f'blockbuster-{num_pages}-pages.pdf', download_name=f'blockbuster-{num_pages}-pages.pdf')
 
 	else:
 		return render_template('index.html')
@@ -49,5 +48,7 @@ def file_downloads():
 	except Exception as e:
 		return str(e)
 
-
-
+# To run this Flask app:
+# 1. cd into src directory
+# 2. run "flask run"
+# 4. Open http://127.0.0.1:5000/

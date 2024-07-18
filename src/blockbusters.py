@@ -1,11 +1,13 @@
 
 # Imports
 #https://stackoverflow.com/questions/46525981/how-to-plot-x-y-z-coordinates-in-the-shape-of-a-hexagonal-grid
+import matplotlib
+from matplotlib.backends.backend_pdf import PdfPages
 import matplotlib.pyplot as plt
 from matplotlib.patches import RegularPolygon
+matplotlib.use('Agg')  # Use the Agg backend for non-interactive environments
 import numpy as np
 import random
-from matplotlib.backends.backend_pdf import PdfPages
 
 # Specify coordinates
 coord = [
