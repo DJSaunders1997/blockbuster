@@ -5,7 +5,7 @@ on:
   # Automatically trigger it when detected changes in repo
   push:
     branches: 
-      [ containerise ]
+      [ "main", "containerise" ]
     paths:
     - '.src/**'
     - '.github/workflows/blockbusters-AutoDeployTrigger-bdedee67-d3bc-4645-bed7-144204de834f.yml'
@@ -40,7 +40,7 @@ jobs:
           registryPassword: ${{ secrets.BLOCKBUSTERS_REGISTRY_PASSWORD }}
           containerAppName: blockbusters
           resourceGroup: AzureContainerAppsRG
-          imageToBuild: ghcr.io/blockbusters:${{ github.sha }}
+          imageToBuild: ghcr.io/djsaunders1997/blockbusters:${{ github.sha }}
           _buildArgumentsKey_: |
             _buildArgumentsValues_
 
